@@ -19,6 +19,7 @@ const io = new Server(server, {
   cors: process.env.ALLOWED_ORIGIN,
   serveClient: false
 })
+io.set('transports', ['websocket'])
 io.on('connection', initSocket)
 
 const port = process.env.PORT || 4000
