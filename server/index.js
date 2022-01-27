@@ -1,3 +1,5 @@
+// Using WebSockets on Heroku with Node.js
+// heroku features:enable http-session-affinity -a react-webrtc-call
 import express from 'express'
 import { createServer } from 'http'
 import { join, dirname } from 'path'
