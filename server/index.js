@@ -17,8 +17,7 @@ app.use(express.static(join(__dirname, '../client/dist')))
 
 const io = new Server(server, {
   cors: process.env.ALLOWED_ORIGIN,
-  serveClient: false,
-  transports: ['websocket']
+  serveClient: false
 })
 io.on('connection', initSocket)
 
