@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "concurrently \"yarn --cwd server dev\" \"yarn --cwd client dev\"",
-    "build": "cd client && yarn build",
-    "start": "node server/index.js"
+    "build": "cd client && yarn && yarn build",
+    "start": "cd server && yarn && node index.js"
   }
 }
