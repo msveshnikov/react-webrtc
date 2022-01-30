@@ -22,6 +22,7 @@ class MediaDevice extends Emitter {
         t.enabled = on ? on : !t.enabled
       })
     }
+
     return this
   }
 
@@ -29,6 +30,7 @@ class MediaDevice extends Emitter {
     if (this.stream) {
       this.stream.getTracks().forEach((t) => t.stop())
     }
+
     return this
   }
 }

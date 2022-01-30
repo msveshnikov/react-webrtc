@@ -78,8 +78,8 @@ export default function App() {
   const finishCall = (isCaller) => {
     pc.stop(isCaller)
 
-    setConfig(null)
     setPc(null)
+    setConfig(null)
 
     setCalling(false)
     setShowModal(false)

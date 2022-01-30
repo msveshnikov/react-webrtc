@@ -7,6 +7,8 @@ const CONFIG = { iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }] }
 class PeerConnection extends Emitter {
   constructor(remoteId) {
     super()
+    this.remoteId = remoteId
+
     this.pc = new RTCPeerConnection(CONFIG)
     this.pc.onicecandidate = ({ candidate }) => {
       socket.emit('call', {
@@ -19,7 +21,6 @@ class PeerConnection extends Emitter {
     }
 
     this.mediaDevice = new MediaDevice()
-    this.remoteId = remoteId
 
     this.getDescription = this.getDescription.bind(this)
   }
@@ -73,8 +74,8 @@ class PeerConnection extends Emitter {
     return this
   }
 
-  setRemoteDescription(sdp) {
-    this.pc.setRemoteDescription(new RTCSessionDescription(sdp))
+  setRemoteDescription(desc) {
+    this.pc.setRemoteDescription(new RTCSessionDescription(desc))
 
     return this
   }
