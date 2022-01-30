@@ -80,6 +80,7 @@ export const CallWindow = ({
             className='local'
             ref={localVideo}
             autoPlay
+            muted
             onClick={() => setDragging(!dragging)}
             style={{
               top: `${coords.y}px`,
