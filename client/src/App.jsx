@@ -46,22 +46,16 @@ export default function App() {
   }, [pc])
 
   const startCall = (isCaller, remoteId, config) => {
-    setCalling(true)
     setShowModal(false)
-
+    setCalling(true)
     setConfig(config)
 
     const _pc = new PeerConnection(remoteId)
       .on('localStream', (stream) => {
         setLocalSrc(stream)
-
-        if (!isCaller) {
-          setShowModal(false)
-        }
       })
       .on('remoteStream', (stream) => {
         setRemoteSrc(stream)
-
         setCalling(false)
       })
       .start(isCaller, config)
@@ -101,9 +95,9 @@ export default function App() {
       )}
       {showModal && (
         <CallModal
+          callFrom={callFrom}
           startCall={startCall}
           rejectCall={rejectCall}
-          callFrom={callFrom}
         />
       )}
       {remoteSrc && (

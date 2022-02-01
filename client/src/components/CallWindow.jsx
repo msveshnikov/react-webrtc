@@ -11,6 +11,7 @@ export const CallWindow = ({
 }) => {
   const remoteVideo = useRef()
   const localVideo = useRef()
+  const localVideoSize = useRef()
   const [video, setVideo] = useState(config?.video)
   const [audio, setAudio] = useState(config?.audio)
 
@@ -21,20 +22,15 @@ export const CallWindow = ({
   })
 
   useEffect(() => {
+    const { width, height } = localVideo.current.getBoundingClientRect()
+    localVideoSize.current = { width, height }
+  }, [])
+
+  useEffect(() => {
     dragging
       ? localVideo.current.classList.add('dragging')
       : localVideo.current.classList.remove('dragging')
   }, [dragging])
-
-  const onMouseMove = (e) => {
-    if (dragging) {
-      const { width, height } = localVideo.current.getBoundingClientRect()
-      setCoords({
-        x: e.clientX - width / 2,
-        y: e.clientY - height / 2
-      })
-    }
-  }
 
   useEffect(() => {
     window.addEventListener('mousemove', onMouseMove)
@@ -59,6 +55,15 @@ export const CallWindow = ({
       mediaDevice.toggle('Audio', audio)
     }
   }, [mediaDevice])
+
+  const onMouseMove = (e) => {
+    if (dragging) {
+      setCoords({
+        x: e.clientX - localVideoSize.current.width / 2,
+        y: e.clientY - localVideoSize.current.height / 2
+      })
+    }
+  }
 
   const toggleMediaDevice = (deviceType) => {
     if (deviceType === 'video') {
