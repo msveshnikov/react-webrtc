@@ -21,7 +21,6 @@ class PeerConnection extends Emitter {
     }
 
     this.mediaDevice = new MediaDevice()
-
     this.getDescription = this.getDescription.bind(this)
   }
 

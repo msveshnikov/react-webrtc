@@ -28,8 +28,11 @@ class MediaDevice extends Emitter {
 
   stop() {
     if (this.stream) {
-      this.stream.getTracks().forEach((t) => t.stop())
+      this.stream.getTracks().forEach((t) => {
+        t.stop()
+      })
     }
+    this.off()
 
     return this
   }
